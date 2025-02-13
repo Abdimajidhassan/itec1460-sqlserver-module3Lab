@@ -1,5 +1,5 @@
 SELECT c.companyName, O.OrderDate from Customers AS 
-c Join AS o ON c.customerID = o.CustormerID;
+c JOIN AS o ON c.customerID = o.CustormerID;
 -- query to see all the customers info-- 
 SELECT c.CustomerID, c.CompanyName, o.OrderID, o.OrderDate 
 FROM Customers c LEFT JOIN Orders o ON c.CustomerID = o.CustomerID;
@@ -33,10 +33,17 @@ ORDER BY UnitPrice;
 
 SELECT TOP 5 
 c.CustomerID, c.CompanyName, 
-ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS TotalPurchase 
+ROUND(SUM( od.UnitPrice * od.Quantity * (1 - od.Discount)),2) AS TotalPurchase 
 FROM Customers c 
 INNER JOIN Orders o ON c.CustomerID = o.CustomerID 
 INNER JOIN [Order Details] od ON o.OrderID = od.OrderID 
 WHERE YEAR(o.OrderDate) = 1997  
 GROUP BY c.CustomerID, c.CompanyName 
 ORDER BY TotalPurchase DESC;
+
+SELECT TOP 10 c.CustomerID, ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)),2) 
+AS TotalPurchase FROM Custormers c JOIN orders o ON c.CustomerID = o.CustormerID 
+JOIN [Order Details] od ON o.OrderID = o.orderID 
+WHERE YEAR (o.OrderDate) = 1997 GROUP BY c.CustormerID, c.companyName ORDER BY TotalPurchase DESC;
+
+
