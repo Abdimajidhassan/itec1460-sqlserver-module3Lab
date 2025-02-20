@@ -13,7 +13,7 @@ sqlq "SELECT OrderID, CustomerID FROM Orders WHERE CustomerID = 'STUDE';"
 sqlq "DELETE FROM Customers WHERE CustomerID = 'STUDE';"
 sqlq "SELECT CustomerID, CompanyName FROM Customers WHERE CustomerID = 'STUDE';"
 
-//PART 2
+--PART 2
 sqlq "INSERT INTO Customers (CustomerID, CompanyName, ContactName, Country)
 VALUES ('Pop-up Foods', 'ABDI Company', 'Majid Hassan', 'Somalia');"
 sqlq "SELECT CustomerID, CompanyName FROM Customers WHERE CustomerID = 'Pop-up Foods';"
