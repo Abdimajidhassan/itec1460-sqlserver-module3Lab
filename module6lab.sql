@@ -1,22 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -- Create an authors table
 CREATE TABLE Authors (
     AuthorID INT PRIMARY KEY,
@@ -130,6 +112,7 @@ END;
 UPDATE Books SET Price = 14.99 WHERE BookID = 1;
 
 SELECT * FROM trg_BookPriceAudit;
+
 
 
 
