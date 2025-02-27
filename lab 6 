@@ -1,0 +1,32 @@
+CREATE TABLE Reviews(
+    ReviewID INT, Primary Key,
+    BookID INT, Foreign Key referencing Books table
+    CustomerID VARCHAR(5), Foreign Key referencing Customers table,
+    Rating INT(1-5) scale,
+    ReviewText VARCHAR MAX,
+    ReviewDate DATE,
+
+);
+
+CREATE TABLE vw_BookReviewStats (
+    BookTitle VARCHAR(THE Expanse),
+    Totalnumberofreviews INT (400,000),
+    Averagerating DECIMAL INT(4.5),
+    RecentDATE DATE,
+);
+
+--Create TRIGGER tr_ValidateReviewDate
+ON ReviewData
+AFTER UPDATE
+AS
+BEGIN
+  IF UPDATE (RecentDATE)
+  BEGIN
+      INSERT INTO RecentDate (ReviewData)
+      SELECT o.Totalnumberofreviews
+      FROM inserted o
+      JOIN  GETDATE(RecentDate)  ON o.Totalnumberofreviews
+      END
+END;
+
+--PART 4 PArt b AM confused.

@@ -1,4 +1,22 @@
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- Create an authors table
 CREATE TABLE Authors (
     AuthorID INT PRIMARY KEY,
@@ -92,17 +110,19 @@ CREATE TABLE BookPriceAudit(
     ChangeDate DATETIME DEFAULT GETDATE()
 );
 
--- Create the trigger
 CREATE TRIGGER trg_BookPriceChange
 ON Books
 AFTER UPDATE
-AS 
+AS
 BEGIN
     IF UPDATE(Price)
     BEGIN
         INSERT INTO BookPriceAudit (BookID, OldPrice, NewPrice)
-        SELECT i.BookID, d.Price, i.Price
-        FROM inserted i 
+        SELECT 
+            i.BookID,
+            d.Price,
+            i.Price
+        FROM inserted i
         JOIN deleted d ON i.BookID = d.BookID
     END
 END;
@@ -110,3 +130,12 @@ END;
 UPDATE Books SET Price = 14.99 WHERE BookID = 1;
 
 SELECT * FROM trg_BookPriceAudit;
+
+
+
+
+
+
+
+
+

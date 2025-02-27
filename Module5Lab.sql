@@ -26,3 +26,6 @@ sqlq "DELETE FROM Product WHERE productName ='loopyPizza';"
 
 
 
+
+
+
