@@ -1,0 +1,41 @@
+
+--1--
+SELECT 
+    p.ProductName, 
+    c.CategoryName, 
+    s.SupplierName
+FROM 
+    Products
+JOIN 
+    c ON Products.CategoryID = c.CategoryID
+JOIN 
+    s ON Products.SupplierID = s.SupplierID;
+--2--
+SELECT 
+    c.CustomerID, 
+    c.CompanyName
+FROM 
+    Customers
+LEFT JOIN 
+    Orders ON c.CustomerID = Orders.CustomerID
+WHERE 
+    Orders.OrderID IS NULL;
+
+--3--
+SELECT TOP 5 
+    e.EmployeeID, 
+    f.FirstName, 
+   l.LastName, 
+    t.TotalSales
+FROM 
+    Employees
+INNER JOIN 
+    Orders ON e.EmployeeID = Orders.EmployeeID
+GROUP BY 
+    e.EmployeeID, 
+   f.FirstName, 
+    l.LastName
+ORDER BY 
+    TotalSales DESC;
+
+
