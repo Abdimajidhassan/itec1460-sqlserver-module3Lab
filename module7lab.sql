@@ -3,6 +3,8 @@
 -- need 2 parameters as input
 -- accepts order id and total amount
 -- return the updated total amount as output
+
+
 CREATE OR ALTER PROCEDURE CalculateOrderTotal
     @OrderID INT,
     @TotalAmount MONEY OUTPUT
@@ -48,4 +50,30 @@ EXEC CalculateOrderTotal
     @TotalAmount = @TotalAmount OUTPUT;
 PRINT 'Returned total amount: $' + CAST(ISNULL(@TotalAmount, 0) AS NVARCHAR(20));
 GO
+
+
+-- part 2 --
+
+CREATE OR ALTER PROCEDURE CheckProductStock
+    @ProductID INT,
+    @NeedsReorder BIT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT @NeedsReorder = SUM(UnitsInStock * ReorderLevel )
+    FROM Products
+    WHERE ProductID = @ProductID;
+
+
+END
+GO
+
+-- Test the new procedure
+DECLARE @NeedsReorder BIT;
+EXEC CheckProductStock 
+    @ProductID = 11,
+    @NeedsReorder = @NeedsReorder OUTPUT;
+PRINT 'Needs Reorder: ' + CAST(@NeedsReorder AS VARCHAR(1));
+    
+    
 
