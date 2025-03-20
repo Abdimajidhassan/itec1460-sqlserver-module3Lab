@@ -1,0 +1,90 @@
+--step1--
+SELECT f.FirstName, l.LastName, HireDate
+FROM Employees
+ORDER BY 
+    HireDate;
+GO
+--2--
+SELECT f.FirstName, l.LastName, o.OrderID, o.OrderDate
+FROM Employees 
+JOIN Orders o ON e.EmployeeID = o.EmployeeID
+ORDER BY e.EmployeeID, o.OrderDate;
+GO
+--3--
+
+SELECT c.CategoryName, SUM(od.UnitPrice * od.Quantity  * (1 - od.Discount)) AS TotalSales
+FROM Categories c
+INNER JOIN Products p ON c.CategoryID = p.CategoryID
+INNER JOIN OrderDetails od ON p.ProductID = od.ProductID
+GROUP BY c.CategoryName
+ORDER BY TotalSales DESC;
+GO
+
+--4--
+
+INSERT INTO Suppliers (CompanyName, City, Country)
+VALUES ('Northwind Traders', 'Seattle', 'USA');
+GO
+
+INSERT INTO Categories (CategoryName, Description)
+VALUES ('Organic Products', 'Natural and organic food products');
+GO
+
+INSERT INTO Products (ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued)
+VALUES ('Minneapolis Pizza', 1, 1, 100, 18.00, 39,0, 10, 0
+);
+GO
+
+--5--
+
+sqlq "UPDATE Products SET CategoryID = 'Organic Products' WHERE CategoryID = 'Exotic Liquids';"
+GO
+
+--6--
+DELETE FROM Products 
+WHERE ProductName = @ProductName;
+GO
+--7--
+
+CREATE TABLE EmployeePerformance (
+    PerformanceID int PRIMARY KEY,
+    EmployeeID int FOREIGN KEY REFERENCES  Employees (EmployeeID),
+    YEAR INT (2007),
+    Quarter INT (26),
+    SalesTarget decimal(15,2),
+    ActualSales decimal(15,2)
+);
+GO
+
+--8--
+CREATE VIEW vw_ProductInventory AS 
+SELECT 
+    p.ProductName,
+    c.CategoryName,
+    u.UnitsInStock,
+    u.UnitsOnOrder
+FROM 
+    Products p
+    INNER JOIN Categories c ON p.CategoryID = c.CategoryID
+    INNER JOIN [UnitPrice, UnitsInStock] u ON p.ProductID = u.ProductID
+GROUP BY 
+    p.ProductName, c.CategoryName;
+GO
+
+--9--
+--got confused on INT--
+--but heres the code--
+--CREATE PROCEDURE sp_UpdateProductInventory --
+   -- @ProductID int(),--
+  --  @NewStockLevel int(),--
+
+--ASBEGIN  SET NOCOUNT ON;--
+
+--10--
+SELECT TOP 5
+CustomerID, TotalFreightCost, NumberOfOrders, AverageFreightPerOrder
+FROM Orders
+GROUP BY CustomerID
+ORDER BY TotalFreightCost DESC;
+GO
+
