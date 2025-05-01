@@ -1,0 +1,48 @@
+CREATE TABLE Tester(
+ testerID INT PRIMARY KEY,
+ name VARCHAR(100),
+ phone INT,
+ Email INT(100),
+ Age INT(100),
+ ShoeSize DECIMAL(100,1),
+);
+
+CREATE TABLE  Shoes(
+ ShoesID INT PRIMARY KEY,
+ BrandID VARCHAR(100),
+ PriceID DECIMAL(1000,0)
+);
+
+CREATE TABLE  Brand(
+ shoesID VARCHAR PRIMARY KEY,
+ BrandID VARCHAR(100),
+ PriceID DECIMAL(1000,0)
+ );
+
+CREATE TABLE   review(
+ ReviewID Int PRIMARY KEY,
+ ratings NVARCHAR (10,1),
+ descriptionOfShoes VARCHAR (1000),
+ testerID FOREIGN KEY
+);
+
+CREATE TABLE  siteID(
+siteID  NVarcher PRIMARY KEY,
+TESTPlace VARCHAR (100),
+weather NVARCHAR (100)
+);
+CREATE TABLE Material(
+ MaterialID NVARCHAR PRIMARY KEY,
+ cost INT (8000),
+ hardsoftness NVARCHAR (1000)
+);
+
+CREATE TABLE  company(
+ CompanyID NVARCHAR PRIMARY KEY,
+ Location NVARCHAR (1000),
+ Popularity VARCHAR,
+);
+CREATE TABLE  visual(
+ VisualID NVARCHAR PRIMARY KEY
+ color NVARCHAR,
+);
