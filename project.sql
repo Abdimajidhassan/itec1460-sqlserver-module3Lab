@@ -6,6 +6,17 @@ CREATE TABLE Tester(
  Age INT(100),
  ShoeSize DECIMAL(100,1),
 );
+INSERT INTO Tester (testerID,
+ name,
+ phone ,
+ Email ,
+ Age,
+ ShoeSize)
+VALUES
+(1,Abdi, 509-876-888,ahahah@gmail.com, 17, 10.5),
+(2, zara , 678-876-9876, iuhfkfh@gmail.com, 20 ,7),
+(3, uda, 565-566-9876, usdf@gmail.com, 40, 6.7);
+
 
 CREATE TABLE  Shoes(
  ShoesID INT PRIMARY KEY,
