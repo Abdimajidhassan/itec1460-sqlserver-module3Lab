@@ -2,9 +2,9 @@ CREATE TABLE Tester(
  testerID INT PRIMARY KEY,
  name VARCHAR(100),
  phone INT,
- Email INT(100),
+ Email VARCHAR,
  Age INT(100),
- ShoeSize DECIMAL(100,1),
+ ShoeSize DECIMAL(20,1),
  FOREIGN KEY (shoesID) REFERENCES Shoes (shoesID),
  FOREIGN KEY (ReviewID) REFERENCES review (ReviewID),
  FOREIGN KEY (VisualID) REFERENCES visual (VisualID)
@@ -151,3 +151,49 @@ VALUES
 (2, 'black'),
 (3, 'gray'),
 (4, 'white');
+UPDATE review SET rating  = '10/10' WHERE testerID = '4';
+
+CREATE PROCEDURE UpdateTester
+    @testerID INT,
+    @name VARCHAR(100),
+    @phone VARCHAR(20),
+    @Email VARCHAR(100),
+    @Age INT,
+    @ShoeSize DECIMAL(4,1)
+AS
+BEGIN
+    UPDATE Tester
+    SET name = @name,
+        phone = @phone,
+        Email = @Email,
+        Age = @Age,
+        ShoeSize = @ShoeSize
+    WHERE testerID = @testerID;
+END;
+
+CREATE PROCEDURE InsertTester
+    @testerID INT,
+    @name VARCHAR(100),
+    @phone VARCHAR(20),
+    @Email VARCHAR(100),
+    @Age INT,
+    @ShoeSize DECIMAL(4,1)
+AS
+BEGIN
+    INSERT INTO Tester (testerID, name, phone, Email, Age, ShoeSize)
+    VALUES (@testerID, @name, @phone, @Email, @Age, @ShoeSize);
+END;
+
+CREATE PROCEDURE DeleteTester
+    @testerID INT
+AS
+BEGIN
+    DELETE FROM Tester
+    WHERE testerID = @testerID;
+END;
+
+
+
+
+
+
